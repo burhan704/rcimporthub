@@ -9,7 +9,7 @@
 <!-- EMAILJS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
-emailjs.init("YOUR_PUBLIC_KEY"); 
+emailjs.init("tFlHqjnwg4i2hQwWa"); 
 </script>
 
 <style>
@@ -522,7 +522,7 @@ function placeOrder(){
     total: total.innerText
   };
 
-  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",templateParams)
+  emailjs.send("service_fqg7fg4","template_b782u0t",templateParams)
   .then(()=>{
     alert("Order Email Sent!");
   })
