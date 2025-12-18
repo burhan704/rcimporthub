@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RC IMPORT HUB</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- EMAILJS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("YOUR_PUBLIC_KEY"); 
+</script>
+
+<style>
+:root{
+  --bg:#f4f8ff;
+  --card:#ffffff;
+  --accent:#2563eb;
+  --accent2:#38bdf8;
+  --dark:#0f1724;
+  --muted:#6b7280;
+  --radius:18px;
+  --shadow:0 18px 45px rgba(0,0,0,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,sans-serif}
+body{background:var(--bg);color:var(--dark)}
+
+/* ===== NAVBAR ===== */
+header{
+  position:sticky;
+  top:0;
+  z-index:999;
+  padding:14px 22px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(255,255,255,.75);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(0,0,0,.05);
+}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:800}
+.brand img{width:70px;height:60px;border-radius:10px}
+.controls button{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  padding:10px 14px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  background:var(--card);
+  box-shadow:var(--shadow);
+  transition:.3s;
+  background-color: #30b3cd;
+}
+.controls button:hover{
+  transform:translateY(-3px) scale(1.05)
+}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:520px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 20px;
+  background:linear-gradient(135deg,#0B0B0B,#55cbec);
+  background-image:url("https://static.vecteezy.com/system/resources/thumbnails/048/910/694/small/image-of-surprised-young-woman-gasping-amazed-holding-hand-on-chest-and-smiling-astonished-with-sale-discounts-holding-shopping-bags-standing-against-pink-background-photo.jpg"); 
+  background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+
+}
+.hero-box{
+  max-width:720px;
+  padding:50px;
+  border-radius:28px;
+  background:rgb(20, 28, 30);
+  backdrop-filter:blur(18px);
+  text-align:center;
+  color:#fff;
+}
+.hero h1{font-size:56px;font-weight:800}
+.hero p{font-size:20px;margin:18px 0 26px}
+.hero button{
+  padding:18px 38px;
+  font-size:18px;
+  font-weight:800;
+  border:none;
+  border-radius:16px;
+  cursor:pointer;
+  background:linear-gradient(135deg,#D4AF37,#cdc830);
+  color:#000000;
+}
+
+/* ===== FILTERS ===== */
+.filters{
+  max-width:1200px;
+  margin:30px auto 0;
+  padding:0 20px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.filters input{
+  padding:12px 16px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.1);
+}
+.filters button{
+  padding:12px 20px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  background:var(--accent);
+  color:#fff;
+}
+
+/* ===== CATEGORY BUTTONS ===== */
+.categories{
+  max-width:1200px;
+  margin:20px auto 0;
+  padding:0 20px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.categories button{
+  padding:10px 16px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+  background:var(--accent2);
+  color:#fff;
+  transition:.3s;
+}
+.categories button:hover{transform:scale(1.05)}
+
+/* ===== SHOP GRID ===== */
+.shop{
+  max-width:1200px;
+  margin:auto;
+  padding:30px 20px
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+  gap:22px;
+}
+.product{
+  background:var(--card);
+  padding:16px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  display:flex;
+  flex-direction:column;
+  transition:.3s;
+}
+.product:hover{
+  transform:translateY(-10px) scale(1.03)
+}
+.product img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:14px;
+}
+.product h4{margin:12px 0 4px}
+.price{font-weight:800;color:var(--accent)}
+.actions{
+  margin-top:auto;
+  display:flex;
+  gap:10px;
+}
+.actions button{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:700;
+}
+.buy{
+  background:linear-gradient(135deg,#2563eb,#38bdf8);
+  color:#fff;
+}
+
+/* ===== CART ===== */
+.cart-dock{
+  position:fixed;
+  bottom:18px;
+  right:18px;
+  padding:14px 18px;
+  background:var(--card);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  font-weight:800;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  justify-content:center;
+  align-items:center;
+}
+.modal-box{
+  background:var(--card);
+  padding:24px;
+  border-radius:20px;
+  width:92%;
+  max-width:480px;
+}
+.cart-form input{
+  width:100%;
+  padding:10px 12px;
+  margin:6px 0;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,.2);
+}
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:10px 0;
+}
+.qty button{
+  padding:6px 10px;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+  background:var(--accent2);
+  color:#fff;
+  font-weight:800;
+}
+.checkout-btn{
+  width:100%;
+  margin-top:14px;
+  padding:14px;
+  font-size:16px;
+  font-weight:800;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#0f1724,#2563eb);
+  color:#fff;
+}
+.close-btn{
+  width:100%;
+  margin-top:8px;
+  padding:12px;
+  border:none;
+  border-radius:14px;
+  background:#e5e7eb;
+  font-weight:700;
+  cursor:pointer;
+  transition:.3s;
+}
+.close-btn:hover{background:#cbd5e1}
+
+/* ===== FOOTER ===== */
+footer{
+  margin-top:60px;
+  padding:40px 20px;
+  background:#0f1724;
+  color:#cbd5e1;
+  text-align:center;
+}
+
+/* ===== MOBILE ===== */
+@media(max-width:700px){
+  .hero h1{font-size:34px}
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:700px){
+    nav{
+        flex-direction:column;
+        gap:10px;
+    }
+
+    .nav-actions{
+        width:100%;
+        justify-content:center;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <img src="https://i.postimg.cc/sDXhVLKg/Gemini-Generated-Image-d1of82d1of82d1of-(1).png">
+    RC Import Hub
+  </div>
+  <div class="controls">
+    <button onclick="toggleDarkMode()">🌙 Dark Mode</button> <br> 
+    <button style="background-color: #e5e833;" onclick="openCart()">🛒 Cart(<span id="cartCount">0</span>)</button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-box">
+    <h1>Carry With Confidence</h1>
+    <p>Premium bags for modern lifestyle</p>
+    <button onclick="shop.scrollIntoView({behavior:'smooth'})">Shop Now</button>
+  </div>
+</section>
+
+<div class="filters">
+  <input type="search" placeholder="Search product..." oninput="searchProduct(this.value)">
+  <input type="number" id="minPrice" placeholder="Min ৳">
+  <input type="number" id="maxPrice" placeholder="Max ৳">
+  <button onclick="applyPrice()">Apply</button>
+</div>
+
+<div class="categories">
+  <button onclick="filterCategory('All')">All</button>
+  <button onclick="filterCategory('Backpacks')">Backpacks</button>
+  <button onclick="filterCategory('Totes')">Totes</button>
+  <button onclick="filterCategory('Duffel')">Duffel</button>
+</div>
+
+<section class="shop" id="shop">
+  <div class="grid" id="grid"></div>
+</section>
+
+<div class="cart-dock">Cart: <span id="dockCount">0</span></div>
+
+<div class="modal" id="cartModal">
+  <div class="modal-box">
+    <h3>Your Cart</h3>
+    <div class="cart-form">
+      <input id="cname" placeholder="Your Name">
+      <input id="cphone" placeholder="Contact Number">
+      <input id="cemail" placeholder="Email for Order Copy">
+      <input id="caddress" placeholder="Address">
+    </div>
+    <div id="cartItems"></div>
+    <h4>Total: ৳ <span id="total">0</span></h4>
+
+    <button class="checkout-btn" onclick="placeOrder()">Place Order</button>
+    <button class="close-btn" onclick="closeCart()">Close Cart</button>
+  </div>
+</div>
+
+<footer>
+  © 2025 RC Import Hub — Premium Bags Store
+</footer>
+
+<script>
+/* ========= PRODUCTS ========= */
+const products = [
+  {id:1,title:"Premium Backpack 1",category:"Backpacks",price:840,img:"https://upload.wikimedia.org/wikipedia/commons/c/c8/Altja_j%C3%B5gi_Lahemaal.jpg"},
+
+
+  {id:2,title:"Premium Tote 2",category:"Totes",price:880,
+  img:"https://eduindex.org/wp-content/uploads/2021/07/1913623.jpg?w=1024"},
+
+
+  {id:3,title:"Premium Duffel 3",category:"Duffel",price:920,
+  img:"https://natureconservancy-h.assetsadobe.com/is/image/content/dam/tnc/nature/en/photos/w/o/WOPA160517_D056-resized.jpg?crop=864%2C0%2C1728%2C2304&wid=600&hei=800&scl=2.88"},
+
+
+
+  {id:4,title:"Premium Backpack 4",category:"Backpacks",price:960,img:"https://png.pngtree.com/thumb_back/fh260/background/20230411/pngtree-nature-forest-sun-ecology-image_2256183.jpg"},
+
+
+  {id:5,title:"Premium Tote 5",category:"Totes",price:1000,
+  img:"https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg"},
+
+
+
+
+  {id:6,title:"Premium Duffel 6",category:"Duffel",price:1040,
+  img:"https://images.pexels.com/photos/374070/pexels-photo-374070.jpeg"},
+
+
+  {id:7,title:"Premium Backpack 7",category:"Backpacks",price:1080,img:"https://images.pexels.com/photos/374070/pexels-photo-374070.jpeg"},
+
+
+  {id:8,title:"Premium Tote 8",category:"Totes",price:1120,
+  img:"https://images.pexels.com/photos/903177/pexels-photo-903177.jpeg"},
+
+
+
+  {id:9,title:"Premium Duffel 9",category:"Duffel",price:1160,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?9"},
+
+
+  {id:10,title:"Premium Backpack 10",category:"Backpacks",price:1200,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?10"},
+
+
+
+  {id:11,title:"Premium Tote 11",category:"Totes",price:1240,
+  img:"https://images.pexels.com/photos/1581552/pexels-photo-1581552.jpeg"},
+
+
+
+  {id:12,title:"Premium Duffel 12",category:"Duffel",price:1280,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?12"},
+  {id:13,title:"Premium Backpack 13",category:"Backpacks",price:1320,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?13"},
+  {id:14,title:"Premium Tote 14",category:"Totes",price:1360,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?14"},
+  {id:15,title:"Premium Duffel 15",category:"Duffel",price:1400,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?15"},
+  {id:16,title:"Premium Backpack 16",category:"Backpacks",price:1440,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?16"},
+  {id:17,title:"Premium Tote 17",category:"Totes",price:1480,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?17"},
+  {id:18,title:"Premium Duffel 18",category:"Duffel",price:1520,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?18"},
+  {id:19,title:"Premium Backpack 19",category:"Backpacks",price:1560,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?19"},
+  {id:20,title:"Premium Tote 20",category:"Totes",price:1600,img:"https://images.unsplash.com/photo-1590874102752-ce22d84f5fa1?20"},
+];
+
+let filtered=[...products];
+let cart=[];
+
+function render(){
+  grid.innerHTML="";
+  filtered.forEach(p=>{
+    grid.innerHTML+=`
+    <div class="product">
+      <img src="${p.img}">
+      <h4>${p.title}</h4>
+      <div class="price">৳ ${p.price}</div>
+      <div class="actions">
+        <button onclick="add(${p.id})">Add</button>
+        <button class="buy" onclick="buyNow(${p.id})">Buy Now</button>
+      </div>
+    </div>`;
+  });
+}
+render();
+
+/* ========= SEARCH ========= */
+function searchProduct(q){
+  filtered=products.filter(p=>p.title.toLowerCase().includes(q.toLowerCase()));
+  render();
+}
+
+/* ========= PRICE ========= */
+function applyPrice(){
+  const min=+minPrice.value||0;
+  const max=+maxPrice.value||99999;
+  filtered=products.filter(p=>p.price>=min && p.price<=max);
+  render();
+}
+
+/* ========= CATEGORY ========= */
+function filterCategory(cat){
+  if(cat==="All") filtered=[...products];
+  else filtered=products.filter(p=>p.category===cat);
+  render();
+}
+
+/* ========= CART ========= */
+function add(id){
+  const p=products.find(x=>x.id===id);
+  const i=cart.find(x=>x.id===id);
+  if(i) i.qty++;
+  else cart.push({...p,qty:1});
+  updateCart();
+}
+
+function buyNow(id){add(id);openCart();}
+
+function updateCart(){
+  cartCount.innerText=cart.reduce((s,i)=>s+i.qty,0);
+  dockCount.innerText=cartCount.innerText;
+  renderCart();
+}
+
+function renderCart(){
+  cartItems.innerHTML=""; 
+  let totalCalc=0;
+
+  cart.forEach(i=>{
+    totalCalc += i.price*i.qty;
+    cartItems.innerHTML+=`
+    <div class="cart-item">
+      <div>${i.title}</div>
+      <div class="qty">
+        <button onclick="changeQty(${i.id},-1)">-</button>
+        ${i.qty}
+        <button onclick="changeQty(${i.id},1)">+</button>
+      </div>
+    </div>`;
+  });
+
+  total.innerText = totalCalc;
+}
+
+function changeQty(id,d){
+  const i=cart.find(x=>x.id===id);
+  if(!i)return;
+  i.qty+=d;
+  if(i.qty<=0) cart=cart.filter(x=>x.id!==id);
+  updateCart();
+}
+
+function openCart(){cartModal.style.display="flex";}
+function closeCart(){cartModal.style.display="none";}
+
+/* ========= EMAIL ORDER ========= */
+function placeOrder(){
+
+  if(!cname.value||!cphone.value||!caddress.value||!cemail.value){
+    alert("Please fill all fields");
+    return;
+  }
+
+  const orderList = cart
+    .map(i=>`${i.title} (Qty:${i.qty})`)
+    .join(" , ");
+
+  const templateParams = {
+    name: cname.value,
+    phone: cphone.value,
+    email: cemail.value,
+    address: caddress.value,
+    order: orderList,
+    total: total.innerText
+  };
+
+  emailjs.send("YOUR_SERVICE_ID","YOUR_TEMPLATE_ID",templateParams)
+  .then(()=>{
+    alert("Order Email Sent!");
+  })
+  .catch(()=>{
+    alert("Email Send Failed!");
+  });
+
+  alert("Order placed successfully!");
+
+  cart=[];
+  updateCart();
+  closeCart();
+}
+
+/* ===== DARK MODE ===== */
+let darkMode=false;
+function toggleDarkMode(){
+  darkMode=!darkMode;
+  if(darkMode){
+    document.documentElement.style.setProperty('--bg','#0f1724');
+    document.documentElement.style.setProperty('--card','#1e293b');
+    document.documentElement.style.setProperty('--dark','#f4f8ff');
+    document.documentElement.style.setProperty('--accent','#3b82f6');
+    document.documentElement.style.setProperty('--accent2','#06b6d4');
+  } else {
+    document.documentElement.style.setProperty('--bg','#f4f8ff');
+    document.documentElement.style.setProperty('--card','#ffffff');
+    document.documentElement.style.setProperty('--dark','#0f1724');
+    document.documentElement.style.setProperty('--accent','#2563eb');
+    document.documentElement.style.setProperty('--accent2','#38bdf8');
+  }
+}
+</script>
+
+</body>
+</html>
