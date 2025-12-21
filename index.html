@@ -294,7 +294,59 @@ footer{
     width: 35px;
     height: 35px;
 }
+  .site-footer {
+    background: #111;
+    color: #ddd;
+    padding: 50px 20px 20px;
+    font-family: Arial, sans-serif;
+}
 
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.footer-box h3,
+.footer-box h4 {
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.footer-box p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.social-icons a img {
+    width: 32px;
+    margin-right: 12px;
+    filter: brightness(0) invert(1);
+    transition: transform 0.3s;
+}
+
+.social-icons a img:hover {
+    transform: scale(1.15);
+}
+
+.payment-icons img {
+    height: 32px;
+    margin: 6px;
+    background: #fff;
+    padding: 4px 6px;
+    border-radius: 6px;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-size: 13px;
+    margin-top: 40px;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+    color: #aaa;
+}
 /* ===== MOBILE ===== */
 @media(max-width:700px){
   .hero h1{font-size:34px}
@@ -382,8 +434,61 @@ footer{
   </div>
 </div>
 
-<footer>
-  © 2025 RC Import Hub — Premium Bags Store
+ <footer class="site-footer">
+  <div class="footer-container">
+
+    <!-- Brand -->
+    <div class="footer-box">
+      <h3>RC Import Hub</h3>
+      <p>Direct import from China, <br> Trendy & quality ladies bags and accessories.</p>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-box">
+      <h4>Contact</h4>
+      <p>📍 Dhaka, Bangladesh</p>
+      <p>📞 +880 1959-988489</p>
+      <p>✉️ rcimporthub@gmail.com</p>
+    </div>
+
+    <!-- Social -->
+    <div class="footer-box">
+      <h4>Follow Us</h4>
+      <div class="social-icons">
+        <a href="#" target="_blank">
+          <img src="https://i.postimg.cc/K8WqMt66/facebook-logo-blue-circle-705838-12823.avif" alt="Facebook">
+        </a>
+        <a href="#" target="_blank">
+          <img src="https://i.postimg.cc/0NqSFQ7g/instagram-logo-976174-11.avif" alt="Instagram">
+        </a>
+      </div>
+    </div>
+
+    <!-- Payment -->
+    <div class="footer-box">
+      <h4>Payment Methods</h4>
+      <div class="payment-icons">
+        <img src="https://static.vecteezy.com/system/resources/previews/068/706/001/non_2x/bkash-logo-horizontal-bangla-mobile-banking-app-icon-free-png.png" alt="bKash">
+
+
+        <img src="https://play-lh.googleusercontent.com/9ps_d6nGKQzfbsJfMaFR0RkdwzEdbZV53ReYCS09Eo5MV-GtVylFD-7IHcVktlnz9Mo" alt="Nagad">
+
+
+
+        <img src="https://static.vecteezy.com/system/resources/previews/068/706/013/non_2x/rocket-color-logo-mobile-banking-icon-free-png.png" alt="Rocket">
+
+
+
+
+        <img src="https://i.pinimg.com/736x/9a/52/75/9a5275c7f4f013c8768c19d221ded66b.jpg" alt="Upay">
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 RC Import Hub. All rights reserved.
+  </div>
 </footer>
 
 <script>
