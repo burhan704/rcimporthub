@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RC IMPORT HUB</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
+<link rel="shortcut icon" href="assets/05518ECB-0D64-41A1-B709-54B238B450B8.png" type="">
 <!-- EMAILJS CDN -->
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 <script>
@@ -70,7 +70,7 @@ header{
   background-image:url("https://i.postimg.cc/HLd6WG6h/B9E5187C-2CB3-4184-8B78-6990993BC76E.png"); 
   background-repeat: no-repeat;
 background-size: cover;
-background-position: center;
+background-position: center 38%;
 
 }
 .hero-box{
@@ -270,6 +270,30 @@ footer{
   color:#cbd5e1;
   text-align:center;
 }
+.whatsapp-float {
+    position: fixed;
+    bottom:10%;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    z-index: 9999;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float img {
+    width: 35px;
+    height: 35px;
+}
 
 /* ===== MOBILE ===== */
 @media(max-width:700px){
@@ -304,10 +328,19 @@ footer{
   </div>
 </header>
 
+<a href="https://wa.me/8801959988489?text=Hi%2C%20I%27m%20interested%20in%20your%20latest%20ladies%20bags.%20Please%20share%20details." 
+   class="whatsapp-float" 
+   target="_blank"
+   aria-label="Chat on WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+         alt="WhatsApp"
+    />
+</a>
+
 <section class="hero">
   <div class="hero-box">
-    <h1>Carry With Confidence</h1>
-    <p>Premium bags for modern lifestyle</p>
+    <h1>Direct form China</h1>
+    <p>Trendy & Quality Products </p>
     <button onclick="shop.scrollIntoView({behavior:'smooth'})">Shop Now</button>
   </div>
 </section>
@@ -338,7 +371,7 @@ footer{
     <div class="cart-form">
       <input id="cname" placeholder="Your Name">
       <input id="cphone" placeholder="Contact Number">
-      <input id="cemail" placeholder="Email for Order Copy">
+      <!-- <input id="cemail" placeholder="Email"> -->
       <input id="caddress" placeholder="Address">
     </div>
     <div id="cartItems"></div>
