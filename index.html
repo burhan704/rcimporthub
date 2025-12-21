@@ -323,15 +323,23 @@ footer{
     line-height: 1.6;
 }
 
+
 .social-icons a img {
+    width: 32px;
+    margin-right: 12px;
+    transition: transform 0.4s;
+    filter: none; /* remove invert */
+}
+
+/* .social-icons a img {
     width: 32px;
     margin-right: 12px;
     filter: brightness(0) invert(1);
     transition: transform 0.3s;
-}
+} */
 
 .social-icons a img:hover {
-    transform: scale(1.15);
+    transform: scale(2.15);
 }
 
 .payment-icons img {
@@ -426,7 +434,7 @@ footer{
     <div class="cart-form">
       <input id="cname" placeholder="Your Name">
       <input id="cphone" placeholder="Contact Number">
-      <!-- <input id="cemail" placeholder="Email"> -->
+      <input id="cemail" placeholder="Email for copy">
       <input id="caddress" placeholder="Address">
     </div>
     <div id="cartItems"></div>
@@ -458,13 +466,14 @@ footer{
     <div class="footer-box">
       <h4>Follow Us</h4>
       <div class="social-icons">
-        <a href="#" target="_blank">
-          <img src="https://i.postimg.cc/K8WqMt66/facebook-logo-blue-circle-705838-12823.avif" alt="https://www.facebook.com/share/1AJaNiVxzW/?mibextid=wwXIfr">
-        </a>
-        <a href="#" target="_blank">
-          <img src="https://i.postimg.cc/0NqSFQ7g/instagram-logo-976174-11.avif" alt="Instagram">
-        </a>
-      </div>
+  <a href="https://www.facebook.com/share/1AJaNiVxzW/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+    <img src="assets/facebook-logo-facebook-social-media-icon-free-png.png" alt="Facebook">
+  </a>
+  <a href="https://www.instagram.comPage" target="_blank" rel="noopener noreferrer">
+    <img src="assets/instagram-button-icon-set-instagram-screen-social-media-and-social-network-interface-template-stories-user-button-symbol-sign-logo-stories-liked-editorial-free-png.webp" alt="Instagram">
+  </a>
+</div>
+
     </div>
 
     <!-- Payment -->
